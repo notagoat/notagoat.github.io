@@ -56,7 +56,7 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-  background-color: #159957; }
+  background-color: #33ccff; }
 
 @media screen and (min-width: 64em) {
   .page-header {
@@ -111,9 +111,11 @@ a {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957; }
+  color: #33ccff; }
 .main-content p {
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  font-family: "helvetica";
+  color: #000000}
 .main-content code {
   padding: 2px 4px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
