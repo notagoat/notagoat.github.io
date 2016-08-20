@@ -14,7 +14,7 @@ class Hunter {
   int colour;   //Sets random colour
 
   Hunter() {  //Initiate cell
-    float sizeV = random(0,4);
+    float sizeV = random(2,3);
     size = new PVector(3 + sizeV,3 + sizeV);
     location = new PVector(random(0,height), random(0, width));
     velocity = new PVector(0, 0);
@@ -56,11 +56,11 @@ class Hunter {
   void display() {
     strokeWeight(1);
     fill(colour);
-    //  blendMode(BLEND);
+    //blendMode(BLEND);
     ellipse(location.x, location.y, size.x, size.y);
   }
   boolean isDead() {
-  if (size.x <= 0) {
+  if (size.x < 1 + random(-0.5,0.5)) {
     return true;    //Simple death check
   } else {
     return false;
@@ -76,7 +76,7 @@ ArrayList<Hunter> hunter;
 void setup() {
   //fullScreen(P3D);
   size(1000,1000);
-  frameRate(120);
+  frameRate(100);
   hunter = new ArrayList<Hunter>(); //init array of hunters
 }
 
@@ -95,9 +95,9 @@ void draw() {
       hunter.remove(i);
       dead += 1;
    }
-   fill(255);
+   fill(250);
    text("Cells Alive: " + hunter.size() ,10,20);
    text("Cells Killed: " + dead,10,40);
-   text("Simulation Time: " + timer,10,60); //Can be turned off for a cleaner screen
+   text("Simulation Time: " + timer / 100,10,60); //Can be turned off for a cleaner screen
   }
 }
