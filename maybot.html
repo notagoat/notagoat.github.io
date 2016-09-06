@@ -27,7 +27,7 @@
       <h2> Getting the Data </h2>
       <p> Downloading the past tweets from twitter is the best method of collecting the tweets rapidly. To request your archive go to the account settings on twitter and scroll down to request your archive. Once the email arrives download the data and open it.
       <br><br>
-      The data is presented with lots of filler to make it look like the twitter interface but all we need is the tweets.csv file. The CSV file contains a lot of fields we don't need (At least, for this twitter bot) so open it in an editor like Excel or LibreOffice Calc. From here we select the column titled "text". [Insert Image here?] Remove everything else and keep only that so we have only the tweet body.
+      The data is presented with lots of filler to make it look like the twitter interface but all we need is the tweets.csv file. The CSV file contains a lot of fields we don't need (At least, for this twitter bot) so open it in an editor like Excel or LibreOffice Calc. From here we select the column titled "text". <img src="/home/may/notagoat.github.io/images/Calcpic.png"> Remove everything else and keep only that so we have only the tweet body.
       <br><br>
       Save the file as a .txt file and name it something like tweets.txt and open it in a word editor. From here there should be a single line column of the tweet bodies. By hand or using RegEx (Really, You should use Regex. Going through 1000+ tweets will be brutal by hand) tweets that should be removed are: </p>
       <ol>
