@@ -37,9 +37,70 @@
           <li>Punctuation can be glitchy but YMMV.
       </ol>
       <p> Once this is done add 'BEGIN NOW' to the front and 'END' to the end. This allows the bot to see the tweets as input.
-
-      For Example: <xmp> BEGIN NOW My hormones are to powerful for you traveller! END </xmp> </p>
+      For Example:
+      <xmp> BEGIN NOW My hormones are to powerful for you traveller! END </xmp> </p>
       <h2> Actual coding time! </h2>
+      <p> Now that the text is formatted we can work on the python script. The python script is used to convert the text input into a pickle file. </p>
+      <h3> But May, What is Pickling? </h3>
+      <p> Glad you asked, Pickling is the process of <strike>preserving by placing food in vinegar</strike> serializing data to allow it to be stored, ordered and reused later easily. This script converts the text data to trigrams so we can use them later for making out tweets/shitposts.
+      <br><br>
+      Make a new file and call it "pickler.py". This makes it a python script and allows it to run when we need it too.
+      First, we add all the basic stuff we need. </p>
+      <xmp>
+      import pickle
+
+      tweets = open("Tweets.txt","r")
+      chain = {}
+      </xmp>
+      <p>
+      This assigns the variable to tweets and sets the chain up ready for use. We now need to add the first code to make the trigrams
+      <br> <br>
+      The bot uses trigrams to generate sentances. Each starts with BEGIN NOW and word after which is used in the text input.
+      Using this we randomly choose which words we want to use.
+      <xmp>
+      def generate_trigram(words):
+        if len(words) < 3:
+          return
+        for i in range(len(words) - 2):
+          yield (words[i], words[i+1], words[i + 2])
+      </xmp>
+      <p> This most likely won't make much sense right now but this section converts each line into a trigram. The main bulk of the code is in the main section which runs through the txt file and converts it into a chain.
+      <xmp>
+      for line in tweets.readlines():
+        words = line.split()
+        for word1, word2, word3 in generate_trigram(words):
+          key = (word1, word2)
+          if key in chain:
+            chain[key].append(word3)
+          else:
+            chain[key] = [word3]
+      </xmp>
+      <p> So line by line,
+      <ul style="list-style: none;">
+        <li> For each line in the tweet read it into the script.
+        <li> Split the line into an array of words along spaces.
+        <li> We pass the words into the generate trigrams section above and yeild the last section as Word1, Word2 and Word3.
+        <li> Set the key to be word1 and word2.
+        <li> If the key is in the chain then.
+        <li> Link it to word 3.
+        <li> If not then.
+        <li> Set word 3 as the key.
+      </ul>
+      <p> So this might be a bit complex, It's sorta hard to visualise but it's sort of like a graph of choices. Each word is linked to what the next possible word could be from past uses of words.
+      <p> For example, we can use a simple sentance to visualise this:
+      <br> <br>
+      "The Cat Sat On The Mat"
+      <br> <br>
+      "The Rat Sat On The Bat"
+      <br> <br>
+      <img src=http://i.imgur.com/gSuj82f.png?1>
+      <br> <br>
+      This is a very simple version of what we're making as ours might have hundreds of thousands of choices, depending on amount of input. Now we can add the final line to the pickler before testing it:
+      <xmp>
+      pickle.dump(chain, open("chain.p", "wb"))
+      </xmp>
+      <p> This dumps the pickled script and saves it as chain.p. Run this script from command line by navigating to the file and typing "python3 pickler.py". Hopefully there should be no errors and no output. Check the file system for a new file called chain.p. You can open it but it is mostly jumbled words and letters. Congrats! Part 1 is done. Now for generating text!
+      </p>
       </section>
     </section>
   </body>
