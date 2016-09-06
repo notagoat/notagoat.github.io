@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Not A Goat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <meta name="description" content="A blog / code dump / idea log for May Ottway, A trans programmer.">
+    <meta name="author" content="May Ottway">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Not A Goat</h1>
+      <h2 class="project-tagline">The website where May Ottway puts her things sometimes</h2>
+    </section>
+    <section class="main-content">
+      <section class="post">
+      <h1> May Bot </h1>
+      <p>
+         So, After seeing a lot of examples of chat bots on twitter (And considering the number of them) I decided to write my own.
+          The bot is designed to mirror my tweeting style as well as my old tweets to allow them to be as close to my style as possible.
+          This project uses Python 3. You need pip3 installed and the Tweepy Module 
+      </p>
+      <h2> Getting the Data </h2>
+      <p> Downloading the past tweets from twitter is the best method of collecting the tweets rapidly. To request your archive go to the account settings on twitter and scroll down to request your archive. Once the email arrives download the data and open it.
+      <br><br>
+      The data is presented with lots of filler to make it look like the twitter interface but all we need is the tweets.csv file. The CSV file contains a lot of fields we don't need (At least, for this twitter bot) so open it in an editor like Excel or LibreOffice Calc. From here we select the column titled "text". [Insert Image here?] Remove everything else and keep only that so we have only the tweet body.
+      <br><br>
+      Save the file as a .txt file and name it something like tweets.txt and open it in a word editor. From here there should be a single line column of the tweet bodies. By hand or using RegEx (Really, You should use Regex. Going through 1000+ tweets will be brutal by hand) tweets that should be removed are: </p>
+      <ol>
+          <li>Tweets with @ names as twitter has issues with bots that tweet at people without them already following the bot.
+          <li>RT's which won't be your words
+          <li>Tweets that are only 1 or 2 words long. This helps make the bot input more lengthy and have better choices of words.
+          <li>Punctuation can be glitchy but YMMV.
+      </ol>
+      <p> Once this is done add 'BEGIN NOW' to the front and 'END' to the end. This allows the bot to see the tweets as input.
+
+      For Example: <xmp> BEGIN NOW My hormones are to powerful for you traveller! END </xmp> </p>
+      <h2> Actual coding time! </h2>
+      <p> With data collected now it needs to be formatted into a plaintext file with each tweet on a single line. Add "BEGIN NOW" to the start of the tweet and "END" to the end. This will be used later to
+        show the pickling script where the tweet starts and where it ends. </p>
+      </section>
+    </section>
+  </body>
+</html>
