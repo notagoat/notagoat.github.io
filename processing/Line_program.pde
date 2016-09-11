@@ -1,9 +1,9 @@
 ArrayList<Particle> particles;
-int count = 75;
+int count = 50;
 void setup() {
   size(1000,1000);
   particles = new ArrayList<Particle>();
-  frameRate(100);
+  frameRate(120);
 }
 void draw() {
   background(0);
@@ -12,21 +12,19 @@ void draw() {
       particles.add(new Particle(new PVector(width/2,50)));
       k++;
   }
-  
   int i = 0;
-  while (i < count) {
-   Particle p = (Particle) particles.get(i); 
+  while (i != count) {
+   Particle p = (Particle) particles.get(i);
    i++;
    int j = 0;
    while (j != count){
      Particle p2 = (Particle) particles.get(j);
-     float distance = dist(p.location.x,p.location.y,p2.location.x,p2.location.y);
-     float colour = constrain(255,0,255 - distance);
-     colour = abs(int(distance));
-     if (colour < 100){
+     float x = p2.location.x - p.location.x;
+     float y = p2.location.y - p.location.y;
+     if (pow(x, 2) + pow(y, 2) < 10000){
+       stroke(100*2);
        line(p2.location.x,p2.location.y,p.location.x,p.location.y);
-       strokeWeight(2);
-       stroke(colour); 
+       strokeWeight(0.5);
      }
      j++;
    }
@@ -60,6 +58,5 @@ class Particle {
     if (location.y > height || location.y < 1) {
       velocity.y *= -1;
     }
-  } 
+  }
 }
-
