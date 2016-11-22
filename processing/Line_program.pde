@@ -1,5 +1,5 @@
 ArrayList<Particle> particles;
-int count = 50;
+int count = 100;
 void setup() {
   size(1000,1000);
   particles = new ArrayList<Particle>();
@@ -21,10 +21,10 @@ void draw() {
      Particle p2 = (Particle) particles.get(j);
      float x = p2.location.x - p.location.x;
      float y = p2.location.y - p.location.y;
-     if (pow(x, 2) + pow(y, 2) < 10000){
+     if (pow(x, 2) + pow(y, 2) < 20000){
        stroke(100*2);
        line(p2.location.x,p2.location.y,p.location.x,p.location.y);
-       strokeWeight(0.5);
+       strokeWeight(0.2);
      }
      j++;
    }
